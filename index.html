@@ -33,12 +33,6 @@
       margin-bottom: 1em;
     }
 
-    .step {
-      color: #ffeb3b;
-      font-weight: bold;
-      margin-right: 0.3em;
-    }
-
     input {
       padding: 1em;
       font-size: 1.2em;
@@ -46,8 +40,14 @@
       max-width: 400px;
       border: none;
       border-radius: 8px;
-      margin-bottom: 1.5em;
+      margin-bottom: 0.5em;
       text-align: center;
+    }
+
+    .note {
+      font-size: 0.9em;
+      color: #ccc;
+      margin-bottom: 1.5em;
     }
 
     button {
@@ -56,6 +56,7 @@
       border: none;
       padding: 1em 2em;
       font-size: 1.2em;
+      font-weight: bold; /* 太字に変更 */
       border-radius: 10px;
       cursor: pointer;
       transition: background-color 0.3s ease;
@@ -70,8 +71,9 @@
   <div class="container">
     <h1>UKIダウンロードリンク</h1>
     <form id="codeForm">
-      <label for="codeInput"><span class="step">1.</span> 6桁のシリアルコードを入力してください</label>
+      <label for="codeInput">6桁のシリアルコードを入力してください</label>
       <input type="text" id="codeInput" maxlength="6" required>
+      <div class="note">※ダウンロード期間は初アクセスから２週間です</div>
       <button type="submit">コードを確認</button>
     </form>
   </div>
