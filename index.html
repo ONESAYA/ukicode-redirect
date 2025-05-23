@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>UKIダウンロードリンク</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>UKIダウンロードリンク</h1>
+  <form id="codeForm">
+    <label for="serial"><strong>1.</strong> 6桁のシリアルコードを入力してください</label>
+    <input type="text" id="serial" maxlength="6" required>
+    <button type="submit">コードを確認</button>
+  </form>
+  <p id="message"></p>
+
+  <script>
+    document.getElementById("codeForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const inputCode = document.getElementById("serial").value.toUpperCase();
+      const message = document.getElementById("message");
+      message.textContent = "確認中...";
+
+      const response = await fetch("UKIcordlst.csv");
+      const text = await response.text();
+      const codes = text.split(/\r?\n/).map(line => line.trim());
+
+      if (codes.includes(inputCode)) {
+        const prefix = inputCode.slice(0, 2);
+        let url = null;
+        switch (prefix) {
+          case "BR": url = "https://photos.app.goo.gl/peM4DP9JWJD5eP2D8"; break;
+          case "AS": url = "https://photos.app.goo.gl/TAAc2THfZTaKC96g9"; break;
+          case "BN": url = "https://photos.app.goo.gl/8PNiCH55RYK7z3AT6"; break;
+          case "ID": url = "https://photos.app.goo.gl/S85W5xfgkVdm1f5e8"; break;
+        }
+        if (url) {
+          window.location.href = url;
+        } else {
+          message.textContent = "対応するURLが見つかりません。";
+        }
+      } else {
+        message.textContent = "このコードは無効です。";
+      }
+    });
+  </script>
+</body>
+</html>
