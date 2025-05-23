@@ -87,7 +87,8 @@
           return response.text();
         })
         .then(text => {
-          const codes = text.split('\n').map(line => line.trim());
+          const codes = text.split('\n').map(line => line.trim()).filter(code => code && code !== 'serialcode');
+
           if (codes.includes(inputCode)) {
             const prefix = inputCode.slice(0, 2);
             let url = '';
